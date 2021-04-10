@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\index;
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
@@ -16,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $user = Auth::user()->id;
-        $post = Index::all()->where('id_user', $user);
+        $post = Index::where('user_id', $user)->get();
         return view('data.home', compact('post'));
     }
 
@@ -27,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('data.create');
     }
 
     /**
@@ -38,7 +39,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        // Post::create(
+        //     [
+        //         'image' => $request->file('image'),
+        //         'title' => $request->nrp,
+        //         'content' => $request->email,
+        //     ]
+        // );
+        Index::create($request->all());
+        // $file = $request->file('file');
+        // $nama_file = $file->getClientOriginalName();
+        // $tujuan_upload = 'img';
+        // $file->move($tujuan_upload, $nama_file);
+        return redirect('/data')->with('status', 'Data Mahasiswa Berhasil DI tambahkan!');
     }
 
     /**
@@ -81,8 +99,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $data)
     {
-        //
+        Post::destroy($data->id);
+        return redirect('/data')->with('status', 'Data Content Berhasil DI Hapus!');
     }
 }
