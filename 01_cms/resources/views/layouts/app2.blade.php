@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<!--
+	<!--
 Metro City Template
 http://www.templatemo.com/tm-470-metro-city
 -->
@@ -16,41 +17,43 @@ http://www.templatemo.com/tm-470-metro-city
 
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
+	<!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
 </head>
+
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="tm-header">
 				<a href="index.html" class="tm-site-name">Metro City</a>
 				<div class="mobile-menu-icon">
-	              <i class="fa fa-bars"></i>
-                </div>
-                
-                @include('layouts.menu')
-				
-			</div>			
-		</div>		
+					<i class="fa fa-bars"></i>
+				</div>
+
+				@include('layouts.menu')
+
+			</div>
+		</div>
 	</div>
 	<div class="tm-banner tm-bn-1">
-        
-        @include('layouts.sidebar')
 
-	</div>	
-	<div class="container">
-        
-        @yield('content')
-        
-        @include('layouts.footer')
+		@include('layouts.sidebar')
 
 	</div>
-	
-	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>      <!-- jQuery -->
-	<script type="text/javascript" src="js/templatemo-script.js"></script>      <!-- Templatemo Script -->
+	<div class="container">
+
+		@yield('content')
+
+		@include('layouts.footer')
+
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script> <!-- jQuery -->
+	<script type="text/javascript" src="js/templatemo-script.js"></script> <!-- Templatemo Script -->
 
 </body>
+
 </html>

@@ -14,10 +14,11 @@ class IndexSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('indexs')->insert([
-            'tittle' => 'Judul 12345',
+        DB::table('posts')->insert([
+            'title' => 'Judul 12345',
             'content' => 'Morbi accumsan ipsum velamso nec tellus roin ...',
-            'image' => 'img/home-1.jpg'
+            'image' => 'img/home-1.jpg',
+            'user_id' => 1,
         ]);
     }
 }

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\Models\index;
+use Illuminate\Support\Facades\Auth;
 
-class ProfilController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class ProfilController extends Controller
      */
     public function index()
     {
-        //
+        $user = Auth::user()->id;
+        $post = Index::all()->where('id_user', $user);
+        return view('data.home', compact('post'));
     }
 
     /**
@@ -55,11 +58,9 @@ class ProfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $profil)
+    public function edit($id)
     {
-        //menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
-        // $user = User::all();
-        return view('profil.edit', compact('profil'));
+        //
     }
 
     /**
@@ -69,21 +70,9 @@ class ProfilController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $profil)
+    public function update(Request $request, $id)
     {
-        $request->validate([
-            'username' => 'required',
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required'
-        ]);
-        User::where('id', $profil->id)->update([
-            'username' => $request->username,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password
-        ]);
-        return redirect('/home')->with('status', 'Data User Berhasil Di Ubah!');
+        //
     }
 
     /**

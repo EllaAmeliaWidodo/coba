@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class index extends Model
 {
-    protected $table = "indexs";
+    protected $table = "posts";
     protected $fillable = [
         'tittle',
         'content',

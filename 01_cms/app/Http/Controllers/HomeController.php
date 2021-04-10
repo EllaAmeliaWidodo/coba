@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\index;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -24,9 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user=Index::all();
-    //    return view('home', compact('user'));
-       return view('auth.login');
+        $user = User::all();
+        // return $user;
+        return view('home', compact('user'));
+        //    return view('auth.login');
     }
     public function product()
     {
@@ -48,5 +50,4 @@ class HomeController extends Controller
     {
         return view('contact');
     }
-   
 }
