@@ -67,7 +67,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = index::find($id);
+        return view('data.show', compact('data'));
     }
 
     /**
@@ -78,7 +79,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = index::find($id);
+        return view('data.edit', compact('data'));
     }
 
     /**
@@ -88,9 +90,21 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $data)
     {
-        //
+        // return $data;
+        // //melakukan validasi data
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        // //fungsi eloquent untuk mengupdate data inputan kita
+        index::find($data)->update($request->all());
+
+        // //jika data berhasil diupdate, akan kembali ke halaman utama
+        return redirect()->route('data.index')
+            ->with('success', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -101,7 +115,7 @@ class PostController extends Controller
      */
     public function destroy(Post $data)
     {
-        Post::destroy($data->id);
+        index::destroy($data->id);
         return redirect('/data')->with('status', 'Data Content Berhasil DI Hapus!');
     }
 }
